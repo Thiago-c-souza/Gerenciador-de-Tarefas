@@ -5,8 +5,9 @@ def menu():
     print("1 - Adicionar Tarefa")
     print("2 - Listar Tarefas")
     print("3 - Marcar Tarefa como Concluída")
-    print("4 - Excluir Tarefa")
-    print("5 - Sair")
+    print("4 - Editar Tarefas")
+    print("5 - Excluir Tarefa")
+    print("6 - Sair")
 
 def salvar_tarefas(tarefas, arquivo="tarefas.json"):
     with open(arquivo, "w") as f:
@@ -48,23 +49,38 @@ def marcar_como_concluida(tarefas):
     except ValueError:
         print("⚠ Digite um número válido.")
 
+def editar_tarefa(tarefas):
+    listar_tarefas(tarefas)
+    try:
+        id_tarefa = int(input("✅ Digite o ID da tarefa: "))
+        for tarefa in tarefas:
+            if tarefa["id"] == id_tarefa:
+                nova_desc = input("✏ Digite a descrição da tarefa: ")
+                tarefa["descricao"] = nova_desc
+                salvar_tarefas(tarefas)
+                print("✔ Tarefa atualizada!")
+                return
+        print('⚠ Tarefa não encontrada.')
+    except ValueError:
+        print("⚠ Digite um número válido.")
+
 def excluir_tarefa(tarefas):
     listar_tarefas(tarefas)
     try:
         id_tarefa = int(input("🗑️ Digite o ID da tarefa para excluir: "))
         nova_lista = [tarefa for tarefa in tarefas if tarefa["id"] != id_tarefa]
-        if len(nova_lista) == len(tarefas):  # Verifica se a tarefa foi encontrada
+        if len(nova_lista) == len(tarefas):
             print("⚠ Tarefa não encontrada.")
         else:
-            tarefas.clear()  # Limpa a lista original
-            tarefas.extend(nova_lista)  # Atualiza a lista original
+            tarefas.clear()
+            tarefas.extend(nova_lista)
             salvar_tarefas(tarefas)
             print("🗑️ Tarefa excluída com sucesso!")
     except ValueError:
         print("⚠ Digite um número válido.")
 
 
-# 📌 Iniciando o programa
+
 tarefas_lista = carregar_tarefas()
 
 while True:
@@ -78,8 +94,10 @@ while True:
     elif opcao == "3":
         marcar_como_concluida(tarefas_lista)
     elif opcao == "4":
-        excluir_tarefa(tarefas_lista)
+        editar_tarefa(tarefas_lista)
     elif opcao == "5":
+        excluir_tarefa(tarefas_lista)
+    elif opcao == "6":
         salvar_tarefas(tarefas_lista)
         print("👋 Saindo... Suas tarefas foram salvas!")
         break
