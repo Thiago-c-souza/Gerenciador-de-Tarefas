@@ -67,8 +67,9 @@ Quando o programa for executado, o seguinte menu aparecerá:
 1 - Adicionar Tarefa
 2 - Listar Tarefas
 3 - Marcar Tarefa como Concluída
-4 - Excluir Tarefa
-5 - Sair
+4 - Editar Tarefa
+5 - Excluir Tarefa
+6 - Sair
 ```
 
 🔹 **Opções disponíveis:**
