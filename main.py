@@ -55,7 +55,10 @@ def editar_tarefa(tarefas):
         id_tarefa = int(input("✅ Digite o ID da tarefa: "))
         for tarefa in tarefas:
             if tarefa["id"] == id_tarefa:
-                nova_desc = input("✏ Digite a descrição da tarefa: ")
+                nova_desc = input("✏ Digite a descrição da tarefa: ").strip()
+                if not nova_desc:
+                    print("⚠ A descrição não pode estar vazia.")
+                    return
                 tarefa["descricao"] = nova_desc
                 salvar_tarefas(tarefas)
                 print("✔ Tarefa atualizada!")
