@@ -3,17 +3,20 @@
 Um **Gerenciador de Tarefas** simples e eficiente feito em **Python**, utilizando **JSON** para armazenar as tarefas. O programa funciona no terminal e permite adicionar, listar, concluir e excluir tarefas.
 
 ## 🚀 Funcionalidades
-✅ Adicionar tarefas com ID único
-✅ Listar tarefas pendentes e concluídas
-✅ Marcar tarefas como concluídas
-✅ Excluir tarefas
-✅ Salvar e carregar tarefas automaticamente (JSON)
-✅ Interface de menu interativa no terminal
+✅ Adicionar tarefas com ID único  
+✅ Listar tarefas pendentes e concluídas (ordenadas automaticamente)  
+✅ Marcar tarefas como concluídas  
+✅ Editar tarefas  
+✅ Excluir tarefas  
+✅ Salvar e carregar tarefas automaticamente (JSON)  
+✅ Interface de menu interativa no terminal  
+✅ Registro de data de criação e conclusão das tarefas  
 
 ## 📌 Tecnologias Utilizadas
 - **Python 3**
 - **Manipulação de arquivos JSON** para armazenamento
 - **Estruturas de repetição e condicionais** para controle de fluxo
+- **Uso da biblioteca `datetime`** para registrar datas das tarefas
 
 ---
 
@@ -74,31 +77,30 @@ Quando o programa for executado, o seguinte menu aparecerá:
 
 🔹 **Opções disponíveis:**
 - **1:** Digite a descrição da nova tarefa para adicioná-la.
-- **2:** Lista todas as tarefas, mostrando seu status (pendente ou concluída).
+- **2:** Lista todas as tarefas, mostrando seu status (pendente ou concluída), ordenadas automaticamente.
 - **3:** Digite o ID da tarefa que deseja marcar como concluída.
-- **4:** Digite o ID da tarefa que deseja excluir.
-- **5:** Salva as tarefas e encerra o programa.
+- **4:** Digite o ID da tarefa que deseja editar e insira a nova descrição.
+- **5:** Digite o ID da tarefa que deseja excluir.
+- **6:** Salva as tarefas e encerra o programa.
 
 ---
 
-## 🏗 **Trecho do Código (Exemplo de Adicionar Tarefa)**
+## 🏗 **Trecho do Código (Exemplo de Ordenação de Tarefas)**
 ```python
-def adicionar_tarefa(tarefas):
-    descricao = input("✏ Digite a descrição da tarefa: ")
-    nova_tarefa = {"id": len(tarefas) + 1, "descricao": descricao, "concluido": False}
-    tarefas.append(nova_tarefa)
-    salvar_tarefas(tarefas)
-    print("✅ Tarefa adicionada com sucesso!")
+def ordenar_tarefas(tarefas):
+    pendentes = [t for t in tarefas if not t["concluido"]]
+    concluidas = [t for t in tarefas if t["concluido"]]
+    return pendentes + concluidas  # Junta as listas ordenadas
 ```
 
 ---
 
 ## 📌 **Possíveis Melhorias Futuras**
-🔹 Ordenação automática (pendentes primeiro, concluídas depois)  
-🔹 Opção para editar uma tarefa  
-🔹 Interface gráfica com Tkinter ou PyQt  
+🔹 Implementação de uma interface gráfica com Tkinter ou PyQt  
 🔹 Uso de Banco de Dados (SQLite) para armazenar tarefas  
-🔹 Implementação de testes unitários  
+🔹 Implementação de testes unitários para validar funcionalidades  
+🔹 Envio de notificações sobre tarefas pendentes  
+🔹 Exportação de tarefas para CSV  
 
 ---
 
@@ -108,7 +110,7 @@ Se quiser contribuir para o projeto:
 2. **Crie uma branch** com a nova funcionalidade: `git checkout -b minha-feature`
 3. **Faça um commit das alterações**: `git commit -m 'Adicionando nova feature'`
 4. **Envie para o GitHub**: `git push origin minha-feature`
-5. **Abra um Pull Request**
+5. **Abra um Pull Request`
 
 ---
 

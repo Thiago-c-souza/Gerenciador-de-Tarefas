@@ -27,13 +27,22 @@ def adicionar_tarefa(tarefas):
     salvar_tarefas(tarefas)
     print("✅ Tarefa adicionada com sucesso!")
 
+def ordenar_tarefas(tarefas):
+    pendentes = [x for x in tarefas if not x["concluido"]]
+    concluidas = [x for x in tarefas if x["concluido"]]
+    return pendentes + concluidas
+
 def listar_tarefas(tarefas):
-    if not tarefas:
+    tarefas_ordenadas = ordenar_tarefas(tarefas)
+    if not tarefas_ordenadas:
         print("📭 Nenhuma tarefa encontrada!")
         return
-    for tarefa in tarefas:
+    print("\n📌 Lista de Tarefas:")
+    print("-" * 40)
+    for tarefa in tarefas_ordenadas:
         status = "✔ Concluída" if tarefa["concluido"] else "❌ Pendente"
-        print(f'{tarefa["id"]} - {tarefa["descricao"]} [{status}]')
+        print(f'ID: {tarefa["id"]} | {tarefa["descricao"]} | Status: {status}')
+    print("-" * 40)
 
 def marcar_como_concluida(tarefas):
     listar_tarefas(tarefas)
