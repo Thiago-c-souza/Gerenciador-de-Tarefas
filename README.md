@@ -85,12 +85,22 @@ Quando o programa for executado, o seguinte menu aparecerá:
 
 ---
 
-## 🏗 **Trecho do Código (Exemplo de Ordenação de Tarefas)**
+## 🏗 **Trecho do Código (Exemplo de Registro de Datas)**
 ```python
-def ordenar_tarefas(tarefas):
-    pendentes = [t for t in tarefas if not t["concluido"]]
-    concluidas = [t for t in tarefas if t["concluido"]]
-    return pendentes + concluidas  # Junta as listas ordenadas
+from datetime import datetime
+
+def adicionar_tarefa(tarefas):
+    descricao = input("✏ Digite a descrição da tarefa: ")
+    nova_tarefa = {
+        "id": len(tarefas) + 1,
+        "descricao": descricao,
+        "concluido": False,
+        "data_criacao": datetime.now().strftime("%d/%m/%Y %H:%M"),
+        "data_conclusao": "Pendente"
+    }
+    tarefas.append(nova_tarefa)
+    salvar_tarefas(tarefas)
+    print("✅ Tarefa adicionada com sucesso!")
 ```
 
 ---

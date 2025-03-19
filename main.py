@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 def menu():
     print("\n📌 Gerenciador de Tarefas")
@@ -22,7 +23,13 @@ def carregar_tarefas(arquivo="tarefas.json"):
 
 def adicionar_tarefa(tarefas):
     descricao = input("✏ Digite a descrição da tarefa: ")
-    nova_tarefa = {"id": len(tarefas) + 1, "descricao": descricao, "concluido": False}
+    nova_tarefa = {
+        "id": len(tarefas) + 1,
+        "descricao": descricao,
+        "concluido": False,
+        "data_criacao": datetime.now().strftime("%d/%m/%Y %H:%M"),
+        "data_conclusao": None
+    }
     tarefas.append(nova_tarefa)
     salvar_tarefas(tarefas)
     print("✅ Tarefa adicionada com sucesso!")
@@ -38,11 +45,14 @@ def listar_tarefas(tarefas):
         print("📭 Nenhuma tarefa encontrada!")
         return
     print("\n📌 Lista de Tarefas:")
-    print("-" * 40)
+    print("-" * 150)
     for tarefa in tarefas_ordenadas:
         status = "✔ Concluída" if tarefa["concluido"] else "❌ Pendente"
-        print(f'ID: {tarefa["id"]} | {tarefa["descricao"]} | Status: {status}')
-    print("-" * 40)
+        data_criacao = tarefa["data_criacao"]
+        data_conclusao = tarefa["data_conclusao"] if tarefa["data_conclusao"] else "Ainda não concluída"
+        print(f'ID: {tarefa["id"]:<3} | {tarefa["descricao"]:<30} | {status} | Criada: {data_criacao} | Concluída: {data_conclusao}')
+    print("-" * 150)
+
 
 def marcar_como_concluida(tarefas):
     listar_tarefas(tarefas)
@@ -51,12 +61,14 @@ def marcar_como_concluida(tarefas):
         for tarefa in tarefas:
             if tarefa["id"] == id_tarefa:
                 tarefa["concluido"] = True
+                tarefa["data_conclusao"] = datetime.now().strftime("%d/%m/%Y %H:%M")  # Data de conclusão
                 salvar_tarefas(tarefas)
                 print("✔ Tarefa marcada como concluída!")
                 return
         print("⚠ Tarefa não encontrada.")
     except ValueError:
         print("⚠ Digite um número válido.")
+
 
 def editar_tarefa(tarefas):
     listar_tarefas(tarefas)
