@@ -1,4 +1,5 @@
 import json
+import csv
 from datetime import datetime
 
 def menu():
@@ -6,9 +7,10 @@ def menu():
     print("1 - Adicionar Tarefa")
     print("2 - Listar Tarefas")
     print("3 - Marcar Tarefa como Concluída")
-    print("4 - Editar Tarefas")
+    print("4 - Editar Tarefa")
     print("5 - Excluir Tarefa")
-    print("6 - Sair")
+    print("6 - Exportar Tarefas para CSV")
+    print("7 - Sair")
 
 def salvar_tarefas(tarefas, arquivo="tarefas.json"):
     with open(arquivo, "w") as f:
@@ -103,6 +105,16 @@ def excluir_tarefa(tarefas):
     except ValueError:
         print("⚠ Digite um número válido.")
 
+def exportar_para_csv(tarefas):
+    with open("tarefas.csv", "w", newline="", encoding="utf-8") as arquivo:
+        escritor_csv = csv.writer(arquivo)
+        escritor_csv.writerow(["ID", "Descrição", "Status", "Data de Criação", "Data de Conclusão"])
+        
+        for tarefa in tarefas:
+            status = "Concluída" if tarefa["concluido"] else "Pendente"
+            escritor_csv.writerow([tarefa["id"], tarefa["descricao"], status, tarefa["data_criacao"], tarefa["data_conclusao"]])
+
+    print("✅ Tarefas exportadas com sucesso para `tarefas.csv`!")
 
 
 tarefas_lista = carregar_tarefas()
@@ -122,6 +134,8 @@ while True:
     elif opcao == "5":
         excluir_tarefa(tarefas_lista)
     elif opcao == "6":
+        exportar_para_csv(tarefas_lista)
+    elif opcao == "7":
         salvar_tarefas(tarefas_lista)
         print("👋 Saindo... Suas tarefas foram salvas!")
         break

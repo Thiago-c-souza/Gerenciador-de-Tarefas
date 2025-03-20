@@ -11,6 +11,7 @@ Um **Gerenciador de Tarefas** simples e eficiente feito em **Python**, utilizand
 ✅ Salvar e carregar tarefas automaticamente (JSON)  
 ✅ Interface de menu interativa no terminal  
 ✅ Registro de data de criação e conclusão das tarefas  
+✅ Exportação de tarefas para CSV
 
 ## 📌 Tecnologias Utilizadas
 - **Python 3**
@@ -110,7 +111,6 @@ def adicionar_tarefa(tarefas):
 🔹 Uso de Banco de Dados (SQLite) para armazenar tarefas  
 🔹 Implementação de testes unitários para validar funcionalidades  
 🔹 Envio de notificações sobre tarefas pendentes  
-🔹 Exportação de tarefas para CSV  
 
 ---
 
