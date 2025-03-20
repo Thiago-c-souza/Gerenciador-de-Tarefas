@@ -82,7 +82,8 @@ Quando o programa for executado, o seguinte menu aparecerá:
 - **3:** Digite o ID da tarefa que deseja marcar como concluída.
 - **4:** Digite o ID da tarefa que deseja editar e insira a nova descrição.
 - **5:** Digite o ID da tarefa que deseja excluir.
-- **6:** Salva as tarefas e encerra o programa.
+- **6:** Exporta todas as tarefas para um arquivo CSV.
+- **7:** Salva as tarefas e encerra o programa.
 
 ---
 
