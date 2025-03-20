@@ -73,7 +73,8 @@ Quando o programa for executado, o seguinte menu aparecerá:
 3 - Marcar Tarefa como Concluída
 4 - Editar Tarefa
 5 - Excluir Tarefa
-6 - Sair
+6 - Exportar Tarefas para CSV
+7 - Sair
 ```
 
 🔹 **Opções disponíveis:**
