@@ -34,7 +34,7 @@ Um **Gerenciador de Tarefas** simples e eficiente feito em **Python**, utilizand
 ## 🔧 **Pré-requisitos**
 Antes de começar, verifique se você tem os seguintes requisitos instalados:
 
-- **Python 3.x** instalado na máquina
+- **Python 3** instalado na máquina
 
 Para verificar a instalação do Python:
 ```sh
