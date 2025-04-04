@@ -49,7 +49,7 @@ def listar_tarefas(tarefas):
     print("\n📌 Lista de Tarefas:")
     print("-" * 150)
     for tarefa in tarefas_ordenadas:
-        status = "✔ Concluída" if tarefa["concluido"] else "❌ Pendente"
+        status = "✔ Concluída" if tarefa["concluido"] else "❌ Pendente."
         data_criacao = tarefa["data_criacao"]
         data_conclusao = tarefa["data_conclusao"] if tarefa["data_conclusao"] else "Ainda não concluída"
         print(f'ID: {tarefa["id"]:<3} | {tarefa["descricao"]:<30} | {status} | Criada: {data_criacao} | Concluída: {data_conclusao}')
